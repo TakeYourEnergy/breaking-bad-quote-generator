@@ -1,0 +1,62 @@
+body {
+   background-image: url(https://sky-wall.ru/uploads/source/2016/02/c8138bd96bf2498f0840a572ddb4aeb4.jpg);
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+   height: 100vh;
+}
+
+.container {
+   display: flex;
+   flex-direction: column;
+   margin: 0 auto;
+   max-width: 600px;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.img {
+   margin-bottom: 80px;
+   width: 400px;
+   height: 400px;
+   object-fit: contain;
+   display: none;
+}
+
+.quotes {
+   font-family: 'Bebas Neue', cursive;
+   font-size: 33px;
+   width: 500px;
+   height: 150px;
+   margin: 0 0 5px 0;
+   display: inline-block;
+   text-align: center;
+}
+
+.author {
+   font-family: 'Inconsolata', monospace;
+   font-size: 20px;
+   width: 200px;
+   height: 50px;
+   margin: 0 0 20px 0;
+   display: inline-block;
+   text-align: center;
+}
+
+.button {
+   width: 200px;
+   height: 50px;
+   font-size: 20px;
+   position: absolute;
+   bottom: 0;
+   left: 50%;
+   transform:translate(-50%, -50%);
+}
+
+
+.text {
+   display: none;
+   flex-direction: column;
+   align-items: center;
+   color: rgb(212, 226, 11);
+}
