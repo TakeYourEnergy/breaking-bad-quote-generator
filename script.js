@@ -1,3 +1,10 @@
+const quotes = document.querySelector('.quotes')
+const author = document.querySelector('.author')
+const image = document.querySelector('.img')
+const text = document.querySelector('.text')
+const spinner = document.querySelector('.spinner')
+const btn = document.querySelector('.button')
+
 function getCharacters() {
    return fetch('https://www.breakingbadapi.com/api/characters')
       .then((res) => {
@@ -25,17 +32,11 @@ function randomInteger(min, max) {
    return Math.floor(rand);
 }
 
-const quotes = document.querySelector('.quotes')
-const author = document.querySelector('.author')
-const image = document.querySelector('.img')
-const text = document.querySelector('.text')
-
 
 function showQotes() {
    getQuotes()
       .then((data) => {
-         let arrQuotesObj = [...data]
-         const onlyBreakingBads = arrQuotesObj.filter(item => {
+         const onlyBreakingBads = data.filter(item => {
             return item.series !== 'Better Call Saul'
          })
          const randomObj = onlyBreakingBads[randomInteger(0, (onlyBreakingBads.length - 1))]
@@ -48,8 +49,7 @@ function showQotes() {
 function showImages() {
    getCharacters()
       .then((data) => {
-         let arrImageObj = [...data]
-         arrImageObj.forEach(item => {
+         data.forEach(item => {
             if (item.name === author.textContent) {
                image.src = item.img
             }
@@ -61,15 +61,26 @@ function showImages() {
             }
          })
       })
-      .catch(err => console.log(err))
+      .catch(err => console.error(err))
+      .finally(() => renderLoading(false))
+}
+
+function renderLoading(isLoading) {
+   if (isLoading) {
+      spinner.classList.add('spinner_visible')
+      image.style.display = 'none'
+   } else {
+      spinner.classList.remove('spinner_visible')
+      image.style.display = 'inline-block'
+   }
 }
 
 
-const btn = document.querySelector('.button')
 btn.addEventListener('click', () => {
-   Promise.all([showQotes(), showImages()])
+   renderLoading(true)
+   showQotes()
+   showImages()
    text.style.display = 'flex'
-   image.style.display = 'inline-block'
 })
 
 
