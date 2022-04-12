@@ -83,4 +83,6 @@ btn.addEventListener('click', () => {
    text.style.display = 'flex'
 })
 
+console.log(123)
+
 
